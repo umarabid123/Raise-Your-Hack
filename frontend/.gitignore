@@ -1,0 +1,41 @@
+# Node modules
+node_modules/
+
+# Output of 'next build'
+.next/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.*.local
+
+# Build cache
+.cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Yarn / npm / pnpm lock files (only ignore if you’re not using it)
+# yarn.lock
+# package-lock.json
+# pnpm-lock.yaml
+
+# Testing
+coverage/
+
+# TypeScript cache
+*.tsbuildinfo
