@@ -5,16 +5,16 @@ export interface SubCollectionType {
 }
 
 export interface Product {
-   id?: number;
+   id : number;
   label?: string;
   discount?: string;
-  category?: string;
-  slug?: string;
-  title?: string;
+  category : string;
+  slug : string;
+  title : string;
   currentPrice?: number;
   oldPrice?: number;
-  img1?: string;
-  img2?: string;
+  img1 : string;
+  img2 : string;
 }
 
 export interface CollectionItem {
@@ -30,16 +30,27 @@ export interface SliderState {
   colectionToggle: boolean;
   search: boolean;
   subCollection: string;
+  popup : boolean
 }
 
 export interface RootState {
   slider: SliderState;
-    filter: {
-        open: boolean;
-        sections: {
-        sortBy: boolean;
-        price: boolean;
-        size: boolean;
-        };
+  filter: {
+    open: boolean;
+    sections: {
+      sortBy: boolean;
+      price: boolean;
+      size: boolean;
     };
+  };
+  cart: {
+    cartItems: CartItem[];
+  };
+}
+
+
+ 
+
+export interface CartItem extends Product {
+  quantity: number;
 }

@@ -5,6 +5,7 @@ interface FilterState {
   priceRange: [number, number];
   rating: number;
   open: boolean;
+  
   sections: {
     sortBy: boolean;
     price: boolean;

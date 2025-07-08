@@ -4,11 +4,15 @@ import HeroSection from "@/components/home/hero-section";
 import SectionComp from "@/components/home/sections-comp";
 import TitleSlider from "@/components/shared/common/title-slider";
 import Footer from "@/components/shared/footer";
+import Navbar from "@/components/shared/navbar/navbar";
 
 const page = () => {
   return (
     <div>
       <TopHeaderSlider />
+      <div className=" sticky bg-white inset-0 z-30">
+        <Navbar />
+      </div>
       <HeroSection />
 
       {/* sections  */}

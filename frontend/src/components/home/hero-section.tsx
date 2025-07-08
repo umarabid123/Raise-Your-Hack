@@ -25,9 +25,9 @@ const HeroSection = () => {
 
   return (
     <div className="relative bg-white">
-      <div className="absolute inset-0 z-30">
+      {/* <div className="absolute inset-0 z-30">
         <Navbar />
-      </div>
+      </div> */}
 
       {/* Mobile slider */}
       <div className="md:hidden">

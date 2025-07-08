@@ -22,9 +22,11 @@ import {
   ToggleEvent,
   MenubarItems,
   Search,
+  setPopup,
 } from "@/redux-store/slices/toggle-arrow";
-
-
+import Popups from "../common/popups";
+import CartPage from "./add-to-cart";
+// import { setPopup } from "@/redux-store/slices/toggle-arrow";
 
 const Navbar = ({ navParent }: { navParent?: string }) => {
   const menuitems = useSelector((state: RootState) => state.slider.menuBar);
@@ -36,13 +38,17 @@ const Navbar = ({ navParent }: { navParent?: string }) => {
   const subCollectionsItem = useSelector(
     (state: RootState) => state.slider.subCollection
   );
+  const addToCart = useSelector((state: RootState) => state.slider.popup);
+
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const dispatch = useDispatch();
   const pathname = usePathname();
 
   return (
     <div
-      className={`py-7 px-2 sm:px-8 relative z-40 md:px-10 bg-transperant text-black flex items-center justify-between ${navParent}`}
+      className={`sticky top-0 py-3 px-2 sm:px-8   z-40 md:px-10 bg-transperant text-black flex items-center justify-between ${navParent}`}
     >
       {/* menu icons shown on small screens */}
       <div className="flex gap-2 lg:hidden">
@@ -58,13 +64,9 @@ const Navbar = ({ navParent }: { navParent?: string }) => {
       {/* logo   */}
       <CustomLink to="/" styles="py-2">
         {pathname === "/" ? (
-          <Image
-            src={"/logo.svg"}
-            alt="forge"
-            height={110}
-            width={210}
-            className="w-44 sm:h-12 sm:w-54 "
-          />
+           <h1 className="text-3xl border p-3 font-bold">
+            Forge / <span className="text-red-400">Store</span>
+           </h1>
         ) : (
           <Image
             src={"/logo-white.avif"}
@@ -178,9 +180,28 @@ const Navbar = ({ navParent }: { navParent?: string }) => {
         <span onClick={() => dispatch(Search())}>
           <SearchIcon className="hidden md:flex" />
         </span>
-        <UserIcon className="hidden md:flex" />
-        <CartIcon />
+        <CustomLink to="/auth/signin">
+          <UserIcon className="hidden md:flex" />
+        </CustomLink>
+
+        {/* cart icon  */}
+        <span
+        className="relative"
+         onClick={() => dispatch(setPopup())}>
+          <CartIcon />
+          {totalCount > 0 && (
+        <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+          {totalCount}
+        </span>
+      )}
+        </span>
       </div>
+
+      {addToCart && (
+          <Popups innerStyles="!pb-0">
+            <CartPage/>
+          </Popups>
+      )}
 
       {/* search bar  */}
       {searchBar && <SearchBox />}
