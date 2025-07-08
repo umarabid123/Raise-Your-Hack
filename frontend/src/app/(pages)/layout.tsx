@@ -15,9 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-white">
+    <div className="bg-white  ">
       <TopHeaderSlider />
-      <Navbar navParent="!bg-black/90 !text-zinc-200" />
+      <Navbar navParent="!bg-black/90 !text-zinc-200  " />
       {children}
       <OurBlogs/>
       <Footer />

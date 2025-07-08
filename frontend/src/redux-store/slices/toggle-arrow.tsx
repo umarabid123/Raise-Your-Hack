@@ -9,6 +9,7 @@ const ToggleArrow = createSlice({
     AccToggle: false,
     colectionToggle: false,
     menuBar: false,
+    popup : false, //popup
     subCollection: null,
     search: false,
     query: "",
@@ -62,7 +63,10 @@ const ToggleArrow = createSlice({
 
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
-    }
+    },
+    setPopup :(state) => {
+      state.popup = !state.popup;
+    },
 
  
   },
@@ -80,5 +84,6 @@ export const {
   Search,
   setQuery,
   setResults,
+  setPopup
 } = ToggleArrow.actions;
 export default ToggleArrow.reducer;

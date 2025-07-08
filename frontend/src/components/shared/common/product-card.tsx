@@ -4,14 +4,18 @@ import CustomButton from "./custom-button";
 import { CartIcon } from "@/svgs/header-svg-grabber";
 import Link from "next/link";
 import { Product } from "../types";
+// import { addToCart } from "@/redux-store/slices/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux-store/slices/cartSlice";
 
 interface Card {
   product: Product;
-
   addStyle?: string;
 }
 
+
 const ProductCard: React.FC<Card> = ({ product, addStyle }) => {
+  const dispatch = useDispatch()
   return (
     <div className={`mr-5 font-mulish ${addStyle}`}>
       <div className=" relative group cursor-pointer ">
@@ -54,10 +58,15 @@ const ProductCard: React.FC<Card> = ({ product, addStyle }) => {
 
         <div className="absolute bottom-4 right-4 ">
           <CustomButton
-            btnText="+ Quick add"
+          onClick={() => dispatch(addToCart(product))}
+            btnText="Add To Cart"
             AdditionalStyle="hidden lg:flex bg-black text-white p-3 text-xs hover:!text-black hover:border-2 hover:bg-transparent  opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           />
+          <span
+          onClick={() => dispatch(addToCart(product))}
+          >
           <CartIcon className="lg:hidden h-10 w-10 p-3 bg-white" />
+          </span>
         </div>
       </div>
 
